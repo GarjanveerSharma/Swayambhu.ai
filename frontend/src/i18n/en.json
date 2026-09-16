@@ -1,0 +1,21 @@
+{
+  "nav.chat": "Chat",
+  "nav.knowledge": "Knowledge base",
+  "nav.files": "Generated files",
+  "nav.system": "System",
+  "chat.new": "New chat",
+  "chat.search": "Search chats",
+  "chat.placeholder": "Ask a question or attach a document…",
+  "chat.send": "Send",
+  "chat.stop": "Stop",
+  "chat.useKb": "Use company documents",
+  "chat.emptyTitle": "Ask anything. Nothing leaves this machine.",
+  "chat.sources": "Sources",
+  "chat.copy": "Copy",
+  "chat.regenerate": "Regenerate",
+  "kb.drop": "Drop PDF, DOCX or scanned images here, or click to choose",
+  "kb.empty": "No documents yet. Upload manuals or SOPs to start.",
+  "files.empty": "No files yet. Ask the assistant to make a report or spreadsheet.",
+  "network.offline": "Offline",
+  "network.outbound": "outbound"
+}

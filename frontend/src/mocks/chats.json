@@ -1,0 +1,25 @@
+[
+  {
+    "id": "c1",
+    "title": "Pump P-101 servicing schedule",
+    "updatedAt": "2026-09-15T10:20:00Z",
+    "messages": [
+      { "id": "m1", "role": "user", "content": "Pump P-101 ki servicing kab karni hai?", "createdAt": "2026-09-15T10:19:00Z" },
+      {
+        "id": "m2", "role": "assistant", "createdAt": "2026-09-15T10:20:00Z",
+        "content": "Pump P-101 ki **har 500 running hours** ya **har 3 mahine** me servicing honi chahiye, jo pehle ho.\n\n| Kaam | Interval |\n|---|---|\n| Bearing grease | 500 hrs |\n| Seal check | 3 mahine |\n| Impeller inspection | 12 mahine |",
+        "model": { "name": "qwen3:14b", "reason": "Complex query, documents se search" },
+        "durationMs": 3400,
+        "sources": [
+          { "docId": "d1", "file": "pump_maintenance_manual.pdf", "page": 12, "text": "Centrifugal pump P-101 shall be serviced every 500 running hours or quarterly, whichever is earlier." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c2",
+    "title": "Transformer drawing BOM",
+    "updatedAt": "2026-09-14T16:05:00Z",
+    "messages": []
+  }
+]

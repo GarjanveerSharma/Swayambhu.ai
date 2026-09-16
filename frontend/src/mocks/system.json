@@ -1,0 +1,15 @@
+{
+  "models": [
+    { "name": "qwen3:4b", "role": "fast", "size": "2.6 GB", "status": "loaded" },
+    { "name": "qwen3:14b", "role": "reasoning", "size": "9.3 GB", "status": "loaded" },
+    { "name": "qwen2.5vl:7b", "role": "vision", "size": "6.0 GB", "status": "idle" },
+    { "name": "bge-m3", "role": "embedding", "size": "1.2 GB", "status": "loaded" }
+  ],
+  "services": [
+    { "name": "Backend", "up": true },
+    { "name": "Ollama", "up": true },
+    { "name": "Qdrant", "up": true },
+    { "name": "Postgres", "up": true }
+  ],
+  "resources": { "ramUsedGb": 21.4, "ramTotalGb": 32, "gpuUsedGb": 9.8, "gpuTotalGb": 12 }
+}

@@ -1,0 +1,5 @@
+[
+  { "id": "d1", "name": "pump_maintenance_manual.pdf", "type": "pdf", "size": 4820000, "pages": 86, "uploadedAt": "2026-09-12T09:00:00Z", "status": "ready" },
+  { "id": "d2", "name": "safety_sop_2024.docx", "type": "docx", "size": 312000, "pages": 14, "uploadedAt": "2026-09-13T11:30:00Z", "status": "ready" },
+  { "id": "d3", "name": "old_inspection_scan.tiff", "type": "tiff", "size": 9100000, "pages": 3, "uploadedAt": "2026-09-14T08:15:00Z", "status": "failed", "error": "OCR could not read page 2. Upload a clearer scan." }
+]

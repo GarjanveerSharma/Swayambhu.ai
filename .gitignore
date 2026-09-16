@@ -1,0 +1,57 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.local
+*.secret
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+build/
+coverage/
+.npm/
+.vite/
+.cache/
+*.tsbuildinfo
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local model weights
+models/*
+!models/.gitkeep
+
+# Runtime storage
+storage/uploads/*
+storage/generated/*
+storage/sandbox/*
+!storage/uploads/.gitkeep
+!storage/generated/.gitkeep
+!storage/sandbox/.gitkeep
+*.db
+*.sqlite
+*.sqlite3
+tmp/
+temp/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

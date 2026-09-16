@@ -1,0 +1,8 @@
+{
+  "connections": [
+    { "local": "172.20.0.3:8000", "remote": "172.20.0.4:11434", "process": "backend → ollama", "internal": true },
+    { "local": "172.20.0.3:8000", "remote": "172.20.0.5:6333", "process": "backend → qdrant", "internal": true },
+    { "local": "172.20.0.3:8000", "remote": "172.20.0.6:5432", "process": "backend → postgres", "internal": true },
+    { "local": "127.0.0.1:5173", "remote": "127.0.0.1:52144", "process": "browser → frontend", "internal": true }
+  ]
+}

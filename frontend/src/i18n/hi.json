@@ -1,0 +1,21 @@
+{
+  "nav.chat": "चैट",
+  "nav.knowledge": "दस्तावेज़",
+  "nav.files": "बनी हुई फ़ाइलें",
+  "nav.system": "सिस्टम",
+  "chat.new": "नई चैट",
+  "chat.search": "चैट खोजें",
+  "chat.placeholder": "सवाल पूछें या दस्तावेज़ जोड़ें…",
+  "chat.send": "भेजें",
+  "chat.stop": "रोकें",
+  "chat.useKb": "कंपनी दस्तावेज़ इस्तेमाल करें",
+  "chat.emptyTitle": "कुछ भी पूछें। कोई डेटा बाहर नहीं जाता।",
+  "chat.sources": "स्रोत",
+  "chat.copy": "कॉपी",
+  "chat.regenerate": "दोबारा बनाएँ",
+  "kb.drop": "PDF, DOCX या स्कैन यहाँ छोड़ें, या चुनने के लिए क्लिक करें",
+  "kb.empty": "अभी कोई दस्तावेज़ नहीं है। मैनुअल या SOP अपलोड करें।",
+  "files.empty": "अभी कोई फ़ाइल नहीं है। रिपोर्ट या स्प्रेडशीट बनाने को कहें।",
+  "network.offline": "ऑफ़लाइन",
+  "network.outbound": "बाहरी"
+}
