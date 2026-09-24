@@ -2,11 +2,15 @@ import type { ServiceHealth } from '../../types/system'
 
 export default function ServicesHealth({ services }: { services: ServiceHealth[] }) {
   return (
-    <ul className="flex flex-wrap gap-3 rounded-md border border-line bg-panel p-3 text-sm">
+    <ul className="flex flex-wrap items-center gap-6 py-1 text-xs">
       {services.map((s) => (
-        <li key={s.name} className="flex items-center gap-1.5">
-          <span className={`h-2.5 w-2.5 rounded-full ${s.up ? 'bg-ok' : 'bg-err'}`} aria-hidden />
-          {s.name} <span className="text-muted">{s.up ? 'up' : 'down'}</span>
+        <li key={s.name} className="flex items-center gap-2">
+          <span
+            className={`h-2 w-2 rounded-full ${s.up ? 'bg-ok' : 'bg-err animate-status-pulse'}`}
+            aria-hidden="true"
+          />
+          <span className="font-medium text-text">{s.name}</span>
+          <span className="text-muted">{s.up ? 'online' : 'offline'}</span>
         </li>
       ))}
     </ul>

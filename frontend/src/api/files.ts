@@ -9,7 +9,18 @@ export async function listFiles(): Promise<GeneratedFile[]> {
     await delay()
     return structuredClone(db.files)
   }
-  return (await api.get('/files')).data
+
+  try {
+    const res = await api.get('/files')
+    return res.data
+  } catch (err) {
+    const typedErr = err as { response?: { status?: number }; request?: unknown }
+    // Temporary: backend /api/files abhi nahi bana, tab tak dummy data
+    if (typedErr?.response?.status === 404 || !typedErr?.response) {
+      return structuredClone(db.files)
+    }
+    throw err
+  }
 }
 
 export async function downloadFile(file: GeneratedFile) {
@@ -17,6 +28,12 @@ export async function downloadFile(file: GeneratedFile) {
     downloadBlob(new Blob([`Mock file: ${file.name}`], { type: 'text/plain' }), file.name + '.txt')
     return
   }
+
+  if (db.files.some((f) => f.id === file.id)) {
+    downloadBlob(new Blob([`Dummy file: ${file.name}`], { type: 'text/plain' }), `${file.name}.txt`)
+    return
+  }
+
   const res = await api.get(`/files/${file.id}`, { responseType: 'blob' })
   downloadBlob(res.data, file.name)
 }
@@ -26,5 +43,11 @@ export async function deleteFile(id: string) {
     db.files = db.files.filter((f) => f.id !== id)
     return
   }
+
+  if (db.files.some((f) => f.id === id)) {
+    db.files = db.files.filter((f) => f.id !== id)
+    return
+  }
+
   await api.delete(`/files/${id}`)
 }

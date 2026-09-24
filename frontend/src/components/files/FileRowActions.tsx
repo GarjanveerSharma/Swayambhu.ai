@@ -12,13 +12,17 @@ export default function FileRowActions({ file }: { file: GeneratedFile }) {
   const del = useDeleteFile()
   const toast = useUiStore((s) => s.toast)
   return (
-    <span className="whitespace-nowrap">
-      <IconButton label="Download" onClick={() => downloadFile(file).catch((e) => toast(e.message, 'error'))}><Download size={16} /></IconButton>
-      <IconButton label="Delete" onClick={() => setConfirm(true)}><Trash2 size={16} /></IconButton>
+    <span className="inline-flex items-center gap-1 whitespace-nowrap">
+      <IconButton label="Download" onClick={() => downloadFile(file).catch((e) => toast(e.message, 'error'))}>
+        <Download size={15} />
+      </IconButton>
+      <IconButton label="Delete" onClick={() => setConfirm(true)}>
+        <Trash2 size={15} />
+      </IconButton>
       <ConfirmDialog
         open={confirm}
-        title="File delete karein?"
-        message={`"${file.name}" hat jayegi.`}
+        title="Delete file?"
+        message={`"${file.name}" will be deleted.`}
         onClose={() => setConfirm(false)}
         onConfirm={() => del.mutate(file.id, { onSuccess: () => toast('File deleted') })}
       />

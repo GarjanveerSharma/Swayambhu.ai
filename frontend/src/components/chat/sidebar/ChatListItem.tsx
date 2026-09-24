@@ -27,7 +27,7 @@ export default function ChatListItem({ chat }: { chat: Chat }) {
       {editing ? (
         <input
           autoFocus
-          className="w-full rounded-md border border-accent bg-panel px-2 py-1.5 text-sm"
+          className="w-full rounded-lg border border-line bg-bg px-2.5 py-1.5 text-sm outline-none focus:border-link/50 focus:ring-2 focus:ring-link/20"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           onBlur={saveTitle}
@@ -37,30 +37,47 @@ export default function ChatListItem({ chat }: { chat: Chat }) {
         <NavLink
           to={`/chat/${chat.id}`}
           onClick={(e) => isStreaming && e.preventDefault()}
-          className={({ isActive }) => `group flex items-center gap-1 rounded-md px-2 py-1.5 text-sm ${isActive ? 'bg-bg' : 'hover:bg-bg'}`}
+          className={({ isActive }) =>
+            `group flex items-center gap-1 rounded-lg px-2.5 py-2 text-[13px] transition-colors duration-100 ${
+              isActive ? 'bg-bg text-text' : 'hover:bg-bg/60 text-text/80'
+            }`
+          }
         >
           <div className="min-w-0 flex-1">
-            <div className="truncate">{chat.title}</div>
-            <div className="text-xs text-muted">{formatDate(chat.updatedAt)}</div>
+            <div className="truncate font-medium leading-snug">{chat.title}</div>
+            {/* Date shown very small, muted */}
+            <div className="mt-0.5 text-[11px] text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+              {formatDate(chat.updatedAt)}
+            </div>
           </div>
-          <Dropdown
-            trigger={<span className="rounded p-1 text-muted hover:text-text" aria-label="Chat options"><MoreHorizontal size={16} /></span>}
-            items={[
-              { label: 'Rename', onClick: () => setEditing(true) },
-              { label: 'Delete', danger: true, onClick: () => setConfirm(true) },
-            ]}
-          />
+          {/* "..." menu — visible on hover only */}
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150 shrink-0">
+            <Dropdown
+              trigger={
+                <span
+                  className="flex h-6 w-6 items-center justify-center rounded-md text-muted hover:bg-line hover:text-text"
+                  aria-label="Chat options"
+                >
+                  <MoreHorizontal size={14} />
+                </span>
+              }
+              items={[
+                { label: 'Rename', onClick: () => setEditing(true) },
+                { label: 'Delete', danger: true, onClick: () => setConfirm(true) },
+              ]}
+            />
+          </div>
         </NavLink>
       )}
       <ConfirmDialog
         open={confirm}
-        title="Chat delete karein?"
-        message={`"${chat.title}" hamesha ke liye hat jayegi.`}
+        title="Delete chat?"
+        message={`"${chat.title}" will be permanently deleted.`}
         onClose={() => setConfirm(false)}
         onConfirm={() =>
           remove.mutate(chat.id, {
             onSuccess: () => {
-              if (id === chat.id) { useChatStore.getState().setActiveChat(null); navigate('/') }
+              if (id === chat.id) { useChatStore.getState().setActiveChat(null); navigate('/chat') }
             },
           })
         }

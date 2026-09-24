@@ -6,8 +6,13 @@ import { downloadBlob } from '../../../utils/downloadBlob'
 
 export default function ExportCsvButton({ logs }: { logs: AuditLog[] }) {
   return (
-    <Button variant="secondary" disabled={logs.length === 0} onClick={() => downloadBlob(new Blob([auditToCsv(logs)], { type: 'text/csv' }), 'audit_log.csv')}>
-      <Download size={14} /> Export CSV
+    <Button
+      variant="secondary"
+      disabled={logs.length === 0}
+      onClick={() => downloadBlob(new Blob([auditToCsv(logs)], { type: 'text/csv' }), 'audit_log.csv')}
+      className="h-9 px-3 text-xs"
+    >
+      <Download size={13} /> Export CSV
     </Button>
   )
 }

@@ -24,16 +24,22 @@ export default function KnowledgePage() {
   )
 
   return (
-    <div className="mx-auto flex h-full max-w-6xl flex-col gap-4 overflow-y-auto p-4">
-      <h1 className="text-lg font-semibold">{t('nav.knowledge')}</h1>
-      <p className="text-sm text-muted">Yahan upload kiye gaye documents se AI jawab dega. Scanned files ka text OCR se nikala jata hai.</p>
+    <div className="mx-auto flex h-full max-w-5xl flex-col gap-6 overflow-y-auto px-6 py-8">
+      <div className="flex flex-col gap-1">
+        <h1 className="text-2xl font-semibold tracking-[-0.01em] text-text">{t('nav.knowledge')}</h1>
+        <p className="text-sm text-muted">Uploaded documents are processed locally for air-gapped retrieval.</p>
+      </div>
+
       <UploadDropzone onFiles={upload} />
       <UploadProgressList items={items} />
-      <DocumentFilters search={search} type={type} types={types} onSearch={setSearch} onType={setType} />
-      {isLoading && <Spinner />}
-      {error && <ErrorState error={error} onRetry={refetch} />}
-      {data && data.length === 0 && <EmptyState text={t('kb.empty')} />}
-      {data && data.length > 0 && <DocumentTable docs={filtered} />}
+
+      <div className="flex flex-col gap-3">
+        <DocumentFilters search={search} type={type} types={types} onSearch={setSearch} onType={setType} />
+        {isLoading && <div className="flex justify-center py-8"><Spinner /></div>}
+        {error && <ErrorState error={error} onRetry={refetch} />}
+        {data && data.length === 0 && <EmptyState text={t('kb.empty')} />}
+        {data && data.length > 0 && <DocumentTable docs={filtered} />}
+      </div>
     </div>
   )
 }

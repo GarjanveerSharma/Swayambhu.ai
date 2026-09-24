@@ -1,10 +1,9 @@
 import { api } from './client'
-import { USE_MOCKS } from '../constants/config'
 import { db, delay } from '../mocks/db'
 import type { AuditLog } from '../types/audit'
 
 export async function listAuditLogs(from?: string, to?: string): Promise<AuditLog[]> {
-  if (USE_MOCKS) {
+  if (false) {
     await delay()
     return db.audit.filter((l) => (!from || l.time >= from) && (!to || l.time <= to + 'T23:59:59Z'))
   }

@@ -15,16 +15,24 @@ export default function UploadDropzone({ onFiles }: { onFiles: (files: File[]) =
     <div>
       <div
         {...getRootProps()}
-        className={`flex cursor-pointer flex-col items-center gap-2 rounded-lg border-2 border-dashed p-8 text-center text-sm ${isDragActive ? 'border-accent bg-panel' : 'border-line'}`}
+        className={`flex cursor-pointer flex-col items-center justify-center gap-2.5 rounded-2xl border border-dashed py-10 px-6 text-center transition-all duration-150 ${
+          isDragActive
+            ? 'border-accent bg-panel'
+            : 'border-line hover:border-muted hover:bg-panel'
+        }`}
       >
         <input {...getInputProps()} />
-        <Upload className="text-muted" />
-        <p>{t('kb.drop')}</p>
-        <p className="text-xs text-muted">PDF, DOCX, TXT, PNG, JPG, TIFF · max 200 MB</p>
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-panel text-muted">
+          <Upload size={18} />
+        </div>
+        <div className="flex flex-col items-center gap-0.5">
+          <p className="text-sm font-medium text-text">{t('kb.drop')}</p>
+          <p className="text-xs text-muted">PDF, DOCX, TXT, images · up to 200 MB</p>
+        </div>
       </div>
       {fileRejections.length > 0 && (
         <p className="mt-2 text-xs text-err">
-          {fileRejections.map((r) => r.file.name).join(', ')}: file type ya size allowed nahi hai.
+          {fileRejections.map((r) => r.file.name).join(', ')}: unsupported file type or size exceeded.
         </p>
       )}
     </div>

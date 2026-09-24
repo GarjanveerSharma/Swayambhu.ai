@@ -6,7 +6,7 @@ export default function ThemeToggle() {
   const { theme, toggleTheme } = useUiStore()
   return (
     <IconButton label="Toggle theme" onClick={toggleTheme}>
-      {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+      {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
     </IconButton>
   )
 }

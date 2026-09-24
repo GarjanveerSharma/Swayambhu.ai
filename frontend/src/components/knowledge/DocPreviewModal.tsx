@@ -12,10 +12,14 @@ export default function DocPreviewModal({ doc, onClose }: { doc: Document | null
     enabled: !!doc,
   })
   return (
-    <Modal open={!!doc} title={`Extracted text: ${doc?.name ?? ''}`} onClose={onClose}>
-      {isLoading && <Spinner />}
+    <Modal open={!!doc} title={`Preview: ${doc?.name ?? ''}`} onClose={onClose}>
+      {isLoading && <div className="flex justify-center py-8"><Spinner /></div>}
       {error && <ErrorState error={error} />}
-      {data && <pre className="whitespace-pre-wrap rounded-md bg-bg p-3 text-xs">{data}</pre>}
+      {data && (
+        <pre className="max-h-[60vh] overflow-y-auto whitespace-pre-wrap rounded-xl border border-line bg-panel p-4 font-mono text-xs text-text leading-relaxed">
+          {data}
+        </pre>
+      )}
     </Modal>
   )
 }

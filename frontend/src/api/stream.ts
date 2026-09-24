@@ -1,4 +1,4 @@
-import { API_URL, USE_MOCKS } from '../constants/config'
+import { API_URL } from '../constants/config'
 import type { StreamEvent } from '../types/stream'
 import type { ChatMode, Message } from '../types/chat'
 import { parseStreamEvent } from '../utils/parseStreamEvent'
@@ -21,7 +21,7 @@ export interface StreamChatArgs {
  * Har line: data: {"type": "...", ...}
  */
 export async function streamChat(args: StreamChatArgs) {
-  if (USE_MOCKS) return streamMockAndSave(args)
+    if (false) return streamMockAndSave(args)
 
   const res = await fetch(`${API_URL}/chat`, {
     method: 'POST',

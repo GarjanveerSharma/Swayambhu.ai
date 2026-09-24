@@ -9,7 +9,7 @@
   "chat.send": "Send",
   "chat.stop": "Stop",
   "chat.useKb": "Use company documents",
-  "chat.emptyTitle": "Ask anything. Nothing leaves this machine.",
+  "chat.emptyTitle": "How can I help?",
   "chat.sources": "Sources",
   "chat.copy": "Copy",
   "chat.regenerate": "Regenerate",

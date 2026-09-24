@@ -1,58 +1,95 @@
 @import "tailwindcss";
 
-/* Simple theme tokens. Baad me design yahin se badalna. */
+/* ─── Design tokens ───────────────────────────────────── */
 :root {
-  --bg: #f6f7f9;
-  --panel: #ffffff;
-  --text: #1c2430;
-  --muted: #5d6878;
-  --line: #dde1e7;
-  --accent: #2f5d8a;
-  --ok: #217a4b;
-  --warn: #9a6400;
-  --err: #b3261e;
+  --bg:     #FFFFFF;
+  --panel:  #F7F7F8;
+  --text:   #111111;
+  --muted:  #6E6E73;
+  --line:   #E5E5EA;
+  --accent: #1D1D1F;
+  --link:   #0A66C2;
+  --ok:     #1F8F4E;
+  --warn:   #B7791F;
+  --err:    #D93025;
 }
+
 .dark {
-  --bg: #14181e;
-  --panel: #1c2129;
-  --text: #e6e9ee;
-  --muted: #9aa4b2;
-  --line: #2e3540;
-  --accent: #7fa9d6;
-  --ok: #5cc08a;
-  --warn: #e0b050;
-  --err: #f08a82;
+  --bg:     #0F0F10;
+  --panel:  #18181B;
+  --text:   #F2F2F2;
+  --muted:  #A1A1AA;
+  --line:   #27272A;
+  --accent: #F2F2F2;
+  --link:   #7AB7FF;
+  --ok:     #4ADE80;
+  --warn:   #FBBF24;
+  --err:    #F87171;
 }
 
 @theme inline {
-  --color-bg: var(--bg);
-  --color-panel: var(--panel);
-  --color-text: var(--text);
-  --color-muted: var(--muted);
-  --color-line: var(--line);
+  --color-bg:     var(--bg);
+  --color-panel:  var(--panel);
+  --color-text:   var(--text);
+  --color-muted:  var(--muted);
+  --color-line:   var(--line);
   --color-accent: var(--accent);
-  --color-ok: var(--ok);
-  --color-warn: var(--warn);
-  --color-err: var(--err);
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", sans-serif;
+  --color-link:   var(--link);
+  --color-ok:     var(--ok);
+  --color-warn:   var(--warn);
+  --color-err:    var(--err);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", sans-serif;
 }
 
+/* ─── Base ───────────────────────────────────────────── */
 html, body, #root { height: 100%; }
-body { background: var(--bg); color: var(--text); font-family: var(--font-sans); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* Markdown content */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Focus ring — uses --link at low opacity */
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--link) 60%, transparent);
+  outline-offset: 2px;
+}
+
+/* ─── Scrollbar (subtle) ─────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ─── Markdown content ───────────────────────────────── */
 .md p { margin: 0.4rem 0; line-height: 1.6; }
 .md ul, .md ol { padding-left: 1.4rem; margin: 0.4rem 0; }
 .md ul { list-style: disc; }
 .md ol { list-style: decimal; }
 .md table { border-collapse: collapse; margin: 0.5rem 0; display: block; overflow-x: auto; }
 .md th, .md td { border: 1px solid var(--line); padding: 4px 10px; text-align: left; }
-.md code { background: var(--bg); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
-.md pre { background: var(--bg); padding: 10px; border-radius: 6px; overflow-x: auto; }
+.md code { background: var(--panel); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+.md pre { background: var(--panel); padding: 12px; border-radius: 8px; overflow-x: auto; }
 .md pre code { padding: 0; }
-.md h1, .md h2, .md h3 { font-weight: 600; margin: 0.6rem 0 0.3rem; }
+.md h1, .md h2, .md h3 { font-weight: 600; margin: 0.8rem 0 0.4rem; line-height: 1.3; }
+.md a { color: var(--link); text-decoration: underline; }
 
+/* ─── Status pulse animation (processing dot) ────────── */
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.animate-status-pulse { animation: status-pulse 1.5s ease-in-out infinite; }
+
+/* ─── Reduced motion ─────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

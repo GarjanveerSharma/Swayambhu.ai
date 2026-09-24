@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { Send, Square } from 'lucide-react'
 import Textarea from '../../ui/Textarea'
-import Button from '../../ui/Button'
 import AttachButton from './AttachButton'
 import AttachmentChip from './AttachmentChip'
 import ModeSelector from './ModeSelector'
@@ -28,7 +27,7 @@ export default function ChatInput({ onSend, onStop, prefill }: Props) {
     if (prefill) { setText(prefill); ref.current?.focus() }
   }, [prefill])
 
-  // textarea apne aap badhe
+  // Auto-grow textarea
   useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -50,14 +49,20 @@ export default function ChatInput({ onSend, onStop, prefill }: Props) {
     }
   }
 
+  const canSend = !!text.trim() && !uploading
+
   return (
-    <div className="mx-auto w-full max-w-3xl px-4 pb-4">
-      <div className="rounded-lg border border-line bg-panel p-2">
+    <div className="mx-auto w-full max-w-[720px] px-4 pb-5">
+      {/* Floating input box */}
+      <div className="rounded-3xl border border-line bg-bg shadow-sm shadow-black/[0.06] transition-shadow duration-150 focus-within:shadow-md focus-within:shadow-black/[0.08]">
+        {/* Attachment chips */}
         {attachments.length > 0 && (
-          <div className="mb-2 flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1.5 px-4 pt-3">
             {attachments.map((a) => <AttachmentChip key={a.id} item={a} />)}
           </div>
         )}
+
+        {/* Textarea */}
         <Textarea
           ref={ref}
           rows={1}
@@ -65,23 +70,42 @@ export default function ChatInput({ onSend, onStop, prefill }: Props) {
           placeholder={t('chat.placeholder')}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={onKeyDown}
-          className="px-1 py-1"
+          className="px-4 pt-3.5 pb-1"
           aria-label="Message"
         />
-        <div className="mt-2 flex flex-wrap items-center gap-2">
+
+        {/* Bottom toolbar */}
+        <div className="flex items-center gap-2 px-3 pb-3 pt-1">
           <AttachButton />
           <ModeSelector />
           <KnowledgeToggle />
+
+          {/* Send / Stop — right side */}
           <div className="ml-auto">
             {isStreaming ? (
-              <Button variant="secondary" onClick={onStop}><Square size={14} /> {t('chat.stop')}</Button>
+              <button
+                onClick={onStop}
+                className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-bg transition-opacity duration-150 hover:opacity-80"
+                aria-label={t('chat.stop')}
+                title={t('chat.stop')}
+              >
+                <Square size={14} fill="currentColor" />
+              </button>
             ) : (
-              <Button onClick={submit} disabled={!text.trim() || uploading}><Send size={14} /> {t('chat.send')}</Button>
+              <button
+                onClick={submit}
+                disabled={!canSend}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-bg transition-all duration-150 hover:opacity-85 disabled:opacity-30"
+                aria-label={t('chat.send')}
+                title={t('chat.send')}
+              >
+                <Send size={14} />
+              </button>
             )}
           </div>
         </div>
       </div>
-      <p className="mt-1 text-center text-xs text-muted">Enter se bhejo, Shift+Enter se nayi line</p>
+      {/* "Enter to send" hint removed as per spec */}
     </div>
   )
 }

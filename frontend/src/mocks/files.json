@@ -1,4 +1,7 @@
 [
-  { "id": "f1", "name": "p101_service_checklist.xlsx", "type": "xlsx", "size": 18200, "chatId": "c1", "createdAt": "2026-09-15T10:21:00Z" },
-  { "id": "f2", "name": "monthly_safety_report.docx", "type": "docx", "size": 45100, "createdAt": "2026-09-10T14:00:00Z" }
+  { "id": "f1", "name": "p101_service_checklist.xlsx", "type": "xlsx", "size": 18200, "createdAt": "2026-09-17T10:21:00Z" },
+  { "id": "f2", "name": "monthly_safety_report.docx", "type": "docx", "size": 45100, "createdAt": "2026-09-16T14:00:00Z" },
+  { "id": "f3", "name": "transformer_inspection_summary.pdf", "type": "pdf", "size": 132500, "createdAt": "2026-09-15T09:30:00Z" },
+  { "id": "f4", "name": "quarterly_maintenance_review.pptx", "type": "pptx", "size": 256000, "createdAt": "2026-09-14T16:45:00Z" },
+  { "id": "f5", "name": "spare_parts_inventory.xlsx", "type": "xlsx", "size": 22400, "createdAt": "2026-09-13T11:10:00Z" }
 ]
